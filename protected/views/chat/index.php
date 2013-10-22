@@ -16,7 +16,11 @@
 
             echo $contents;
         }
-        ?></div> 
+        ?>
+     </div>
+     <span id="user_typing">User is typing...</span>
+     <div class="clear">
+     </div> 
     <div class="chatform">
         <form name="message" action="">  
             <input name="usermsg" type="text" id="usermsg" size="63" />  
@@ -51,8 +55,7 @@
 
             return false;
         });
-
-        setInterval(loadLog, 2500);
+		setInterval(loadLog, 2500);
     });
 
     function loadLog() {
