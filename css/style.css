@@ -1,0 +1,64 @@
+form, p, span {  
+    margin:0;  
+    padding:0; }  
+
+input { font:12px arial; }  
+
+.logout a {
+    color:#FFF;  
+    text-decoration:none; }  
+
+a:hover { text-decoration:underline; }  
+
+#wrapper, #loginform {  
+    margin:0 auto;
+    top:50% !important;
+    padding-bottom:25px;  
+    width:504px;  }  
+
+#loginform { padding-top:18px; }  
+
+#loginform p { margin: 5px; }  
+
+#chatbox {  
+    text-align:left;  
+    margin:0 auto;  
+    margin-bottom:25px;
+    padding-top:30px;
+    padding-bottom:30px; 
+    padding-right:15px;
+    padding-left:15px;  
+    background:#fff;  
+    height:270px;  
+    width:430px;  
+    border:1px solid #666666;  
+    overflow:auto; }  
+#chatbox span.date {
+    float: right;
+}
+.chatform {
+    margin-left: 21px;
+}
+
+#usermsg {  
+    width:375px;  
+    border:1px solid #666666;
+    padding: 0; margin: 0; height:40px; }  
+
+#submit { width: 60px; }  
+
+.error { color: #ff0000; }  
+
+#menu { padding:12.5px 25px 12.5px 25px; }  
+
+.welcome { float:left; color:#FA9F00; font-size:30px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; }  
+
+.logout { float:right; }  
+
+.msgln { margin:0 0 2px 0; border-bottom:1px solid #CCCCCC; padding: 5px 0; }
+
+.msgln b {min-width:10%;float: left; background:#333333; color:#FFF; padding: 2px 5px; margin:0 5px 0 0; }
+msgln div.chat_body {float: left;width:80%;}
+msgln span.date {float: left;width:10%;}
+
+#submitmsg { width: 80px; height: 40px; border: none; background:#666; color:#FFF; cursor:pointer; border-radius:5px; }
