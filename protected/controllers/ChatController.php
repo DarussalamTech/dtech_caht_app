@@ -75,9 +75,10 @@ class ChatController extends Controller {
                 $contents = fread($fp, $filesize);
                 fclose($fp);
                 $page_title = $this->readPageTitle();
+                $userName = explode(":",trim($page_title));
                 echo CJSON::encode(array("content" => $contents,"page_title"=>$page_title));
             } else {
-                echo CJSON::encode(array("content" => "","page_title"=>""));
+                echo CJSON::encode(array("content" => "","page_title"=>"","user_name"=>$userName[0]));
             }
         } else {
             echo CJSON::encode(array("content" => "","page_title"=>""));
