@@ -62,3 +62,7 @@ msgln div.chat_body {float: left;width:80%;}
 msgln span.date {float: left;width:10%;}
 
 #submitmsg { width: 80px; height: 40px; border: none; background:#666; color:#FFF; cursor:pointer; border-radius:5px; }
+
+#user_typing { color:#999; padding: 10px 0; margin-top:-32px; margin-left: 20px; float:left; display:block; }
+
+.clear { clear:both;}
