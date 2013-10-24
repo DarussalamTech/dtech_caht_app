@@ -59,10 +59,9 @@
         $("#submitmsg").click(function() {
 
             $.post("<?php echo $this->createUrl("/chat/index") ?>",
-                    $("#chat-form").serialize()
-                    , function() {
-                $("#GroupChat_message").val("");
-            }
+                    $("#chat-form").serialize(), function() {
+                    $("#GroupChat_message").val("");
+                }
             );
 
 
