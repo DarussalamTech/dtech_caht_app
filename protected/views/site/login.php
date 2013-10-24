@@ -8,7 +8,20 @@ $this->breadcrumbs = array(
     'Login',
 );
 ?>
+<div id="statusMsg">
+    <?php if (Yii::app()->user->hasFlash('success')): ?>
+        <div class="flash-success">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+        </div>
+    <?php endif; ?>
 
+    <?php if (Yii::app()->user->hasFlash('error')): ?>
+        <div class="flash-error">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+        </div>
+    <?php endif; ?>
+</div>
+<div class="clear"></div>
 <h1>Login</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
@@ -31,7 +44,12 @@ $this->breadcrumbs = array(
         <?php echo $form->textField($model, 'username'); ?>
         <?php echo $form->error($model, 'username'); ?>
     </div>
-
+    
+    <div class="row">
+        <?php echo $form->labelEx($model, 'password'); ?>
+        <?php echo $form->passwordField($model, 'password'); ?>
+        <?php echo $form->error($model, 'password'); ?>
+    </div>
 
 
     <div class="row buttons">

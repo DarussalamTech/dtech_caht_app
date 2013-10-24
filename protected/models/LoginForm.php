@@ -20,7 +20,7 @@ class LoginForm extends CFormModel {
     public function rules() {
         return array(
             // username and password are required
-            array('username', 'required'),
+            array('username,password', 'required'),
             array('password', 'safe'),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),

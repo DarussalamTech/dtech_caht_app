@@ -7,28 +7,38 @@
  */
 class UserIdentity extends CUserIdentity {
 
-    /**
-     * Authenticates a user.
-     * The example implementation makes sure if the username and password
-     * are both 'demo'.
-     * In practical applications, this should be changed to authenticate
-     * against some persistent user identity storage (e.g. database).
-     * @return boolean whether authentication succeeds.
-     */
-    public function authenticate() {
-        $users = array(
-            // username => password
-            'demo' => 'demo',
-            'admin' => 'admin',
-        );
-//		if(!isset($users[$this->username]))
-//			$this->errorCode=self::ERROR_USERNAME_INVALID;
-//		elseif($users[$this->username]!==$this->password)
-//			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-//		else
+    private $id;
 
-        return $this->errorCode = self::ERROR_NONE;
-        return !$this->errorCode;
+    public function authenticate() {
+        $criteria = new CDbCriteria();
+        $condition = 'LOWER(email)="' . strtolower($this->username) . '" OR username ="' . strtolower($this->username) . '"';
+        $criteria->addCondition($condition);
+
+        $user = Users::model()->find($criteria);
+
+        if ($user === null)
+            $this->errorCode = self::ERROR_USERNAME_INVALID;
+
+        else if (!$user->validatePassword($this->password, $user->password))
+            $this->errorCode = self::ERROR_PASSWORD_INVALID;
+      
+        else {
+
+
+            $this->id = $user->id;
+            //$this->username=$user->user_name;
+            $this->setState('user_email', $user->email);
+            $this->setState('name', $user->contact_name);
+            $this->setState('user_id', $user->id);
+
+
+            $this->errorCode = self::ERROR_NONE;
+        }
+        return $this->errorCode == self::ERROR_NONE;
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
 }

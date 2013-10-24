@@ -17,10 +17,10 @@
             echo $contents;
         }
         ?>
-     </div>
-     <span id="user_typing">User is typing...</span>
-     <div class="clear">
-     </div> 
+    </div>
+    <span id="user_typing">User is typing...</span>
+    <div class="clear">
+    </div> 
     <div class="chatform">
         <form name="message" action="">  
             <input name="usermsg" type="text" id="usermsg" size="63" />  
@@ -55,7 +55,7 @@
 
             return false;
         });
-		setInterval(loadLog, 2500);
+        setInterval(loadLog, 2500);
     });
 
     function loadLog() {
@@ -67,7 +67,7 @@
             cache: false,
             dataType: 'json',
             success: function(data) {
-                $("#chatbox").html(data['content']); //Insert chat log into the #chatbox div     
+                //Insert chat log into the #chatbox div     
 
                 //Auto-scroll             
                 //var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request  
@@ -79,6 +79,8 @@
                     else {
                         document.title = '<?php echo CHtml::encode($this->pageTitle) ?>';
                     }
+
+                    $("#chatbox").html(data['content']);
                     $("#chatbox").animate({scrollTop: newscrollHeight}, 'normal'); //Autoscroll to bottom of div  
 
 
