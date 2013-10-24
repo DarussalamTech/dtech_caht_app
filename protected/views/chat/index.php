@@ -12,6 +12,7 @@
         if (file_exists($file) && filesize($file) > 0) {
             $handle = fopen($file, "r");
             $contents = fread($handle, filesize($file));
+            $contents = GroupChat::model()->getChatHistory();
             fclose($handle);
 
             echo $contents;
@@ -22,10 +23,17 @@
     <div class="clear">
     </div> 
     <div class="chatform">
-        <form name="message" action="">  
-            <input name="usermsg" type="text" id="usermsg" size="63" />  
-            <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />  
-        </form> 
+        <?php
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'chat-form',
+        ));
+        ?>
+        <input type="hidden" name="ajax" id="ajax" value="1" />
+        <?php echo $form->textField($model, 'message', array('size' => '63')); ?>
+
+        <?php echo CHtml::submitButton('Send', array('name' => 'submitmsg','id'=>'submitmsg')); ?>
+
+        <?php $this->endWidget(); ?>
     </div>
 
 </div>  
@@ -49,9 +57,9 @@
          * chat button
          */
         $("#submitmsg").click(function() {
-            var clientmsg = $("#usermsg").val();
-            $.post("<?php echo $this->createUrl("/chat/post") ?>", {text: clientmsg});
-            $("#usermsg").attr("value", "");
+            
+            $.post("<?php echo $this->createUrl("/chat/index") ?>", $("#chat-form").serialize());
+           
 
             return false;
         });
@@ -69,6 +77,8 @@
             success: function(data) {
                 //Insert chat log into the #chatbox div     
 
+                $("#chatbox").html(data['content']);
+
                 //Auto-scroll             
                 //var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request  
                 var newscrollHeight = $('#chatbox')[0].scrollHeight; //Scroll height after the request  
@@ -79,11 +89,7 @@
                     else {
                         document.title = '<?php echo CHtml::encode($this->pageTitle) ?>';
                     }
-
-                    $("#chatbox").html(data['content']);
                     $("#chatbox").animate({scrollTop: newscrollHeight}, 'normal'); //Autoscroll to bottom of div  
-
-
                 }
             },
         });

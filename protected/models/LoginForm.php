@@ -21,11 +21,11 @@ class LoginForm extends CFormModel {
         return array(
             // username and password are required
             array('username,password', 'required'),
-            array('password', 'safe'),
+            //array('password', 'safe'),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
             // password needs to be authenticated
-            //array('password', 'authenticate'),
+            array('password', 'authenticate'),
         );
     }
 
@@ -45,8 +45,10 @@ class LoginForm extends CFormModel {
     public function authenticate($attribute, $params) {
         if (!$this->hasErrors()) {
             $this->_identity = new UserIdentity($this->username, $this->password);
-            if (!$this->_identity->authenticate())
+            if (!$this->_identity->authenticate()){
                 $this->addError('password', 'Incorrect username or password.');
+            }
+          
         }
     }
 

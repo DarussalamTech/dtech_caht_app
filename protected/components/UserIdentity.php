@@ -16,13 +16,13 @@ class UserIdentity extends CUserIdentity {
 
         $user = Users::model()->find($criteria);
 
-        if ($user === null)
-            $this->errorCode = self::ERROR_USERNAME_INVALID;
 
-        else if (!$user->validatePassword($this->password, $user->password))
+        if ($user === null) {
+            $this->errorCode = self::ERROR_USERNAME_INVALID;
+            
+        } else if (!$user->validatePassword($this->password, $user->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
-      
-        else {
+        } else {
 
 
             $this->id = $user->id;
@@ -34,6 +34,7 @@ class UserIdentity extends CUserIdentity {
 
             $this->errorCode = self::ERROR_NONE;
         }
+
         return $this->errorCode == self::ERROR_NONE;
     }
 

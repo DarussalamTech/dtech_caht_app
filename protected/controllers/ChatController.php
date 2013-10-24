@@ -39,18 +39,28 @@ class ChatController extends Controller {
      * chating index action
      */
     public function actionIndex() {
-        $this->render("index");
+        $model = new GroupChat();
+        if(isset($_POST['GroupChat']) && isset($_POST['ajax'])){
+            $model->attributes = $_POST['GroupChat'];
+            $model->username = Yii::app()->user->name;
+            $model->visible_date_time = date("g:i A");
+            $this->saveMessage($model);
+            $model->save();
+        }
+        $this->render("index",array("model"=>$model));
     }
 
     /**
      * chatting action
      */
-    public function actionPost() {
-        $text = $_POST['text'];
+    public function saveMessage($model) {
+        $text = $model->message;
 
         $fp = fopen(Yii::app()->basePath . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "chat_log.html", 'a');
-        fwrite($fp, "<div class='msgln'> <b>" . Yii::app()->user->name . "</b> <div class='chat_body'>" . stripslashes(htmlspecialchars($text)) . "</div><span class='date'>(" . date("g:i A") . ")</span><br></div>");
+        fwrite($fp, "<div class='msgln'> <b>" . $model->username . "</b> <div class='chat_body'>" . stripslashes(htmlspecialchars($text)) . "</div><span class='date'>(" . date("g:i A") . ")</span><br></div>");
         fclose($fp);
+        
+        
 
         /**
          * Now writing page title
@@ -76,6 +86,7 @@ class ChatController extends Controller {
                 fclose($fp);
                 $page_title = $this->readPageTitle();
                 $userName = explode(":",trim($page_title));
+                $contents = GroupChat::model()->getChatHistory();
                 echo CJSON::encode(array("content" => $contents,"page_title"=>$page_title));
             } else {
                 echo CJSON::encode(array("content" => "","page_title"=>"","user_name"=>$userName[0]));
