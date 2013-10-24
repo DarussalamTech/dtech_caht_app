@@ -31,7 +31,7 @@
         <input type="hidden" name="ajax" id="ajax" value="1" />
         <?php echo $form->textField($model, 'message', array('size' => '63')); ?>
 
-        <?php echo CHtml::submitButton('Send', array('name' => 'submitmsg','id'=>'submitmsg')); ?>
+        <?php echo CHtml::submitButton('Send', array('name' => 'submitmsg', 'id' => 'submitmsg')); ?>
 
         <?php $this->endWidget(); ?>
     </div>
@@ -57,9 +57,14 @@
          * chat button
          */
         $("#submitmsg").click(function() {
-            
-            $.post("<?php echo $this->createUrl("/chat/index") ?>", $("#chat-form").serialize());
-           
+
+            $.post("<?php echo $this->createUrl("/chat/index") ?>",
+                    $("#chat-form").serialize()
+                    , function() {
+                $("#GroupChat_message").val("");
+            }
+            );
+
 
             return false;
         });
