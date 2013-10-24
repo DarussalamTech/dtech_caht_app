@@ -60,8 +60,11 @@ class ChatController extends Controller {
         fwrite($fp, "<div class='msgln'> <b>" . $model->username . "</b> <div class='chat_body'>" . stripslashes(htmlspecialchars($text)) . "</div><span class='date'>(" . date("g:i A") . ")</span><br></div>");
         fclose($fp);
         
+        $conf_chat = ConfChatType::model()->findByPk(1);
+        //if(){
+            $conf_chat->updateByPk($conf_chat->id, array("page_title"=>Yii::app()->user->name . " : " . $text));
+        //}
         
-
         /**
          * Now writing page title
          */
