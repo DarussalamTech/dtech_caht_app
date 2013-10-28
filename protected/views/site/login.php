@@ -1,68 +1,75 @@
-<?php
-$this->pageTitle = Yii::app()->name . ' - Login';
-?>
+<!--<div class="login-container">
+    <div id="main_wraper">
+        <div id="wraper">
+            <div id="login">
+                <h1><img src="css/images/login.png" /> Login</h1>
+                <div class="name">
+                    <div class="left">
+                        Username: <span>Incorrect Username</span>
+                    </div>
 
-<?php
-$form = $this->beginWidget('CActiveForm', array(
-    'id' => 'login-form',
-    'enableAjaxValidation' => true,
-    'focus' => ($model->hasErrors()) ? '.error:first' : array($model, 'user_name'),
-        ));
-?>
-<?php
-if (Yii::app()->user->hasFlash('login')) {
-    echo "<span style='color:green'>" . Yii::app()->user->getFlash('login') . "</span>";
-}
-?>
-<div class="login-content-wrapper"><div class="container">
-        <fieldset class="login-fieldset">
-            <legend>Logo Place</legend>
-            <div class="login-title">Login</div>
-            <div class="login-form">
-                <?php
-                if (Yii::app()->user->hasFlash("registration")) {
-                    echo "<span class='flash'>";
-                    echo Yii::app()->user->getFlash("registration");
-                    echo "</span>";
-                    echo "<span clear='both'></span>";
-                }
-                ?>
-
-                <p>Fields with  <span class="font-red"> * </span> are required</p>
-                <div class="row">
-                    <?php echo $form->labelEx($model, 'username'); ?>
-                    <?php echo $form->textField($model, 'username', array('class' => 'text-field')); ?>
-<!--                    <label>User Name  <span class="font-red">*</span></label>
-                    <input type="text" class="text-field">-->
                 </div>
-                <div class="row">
-                    <?php echo $form->labelEx($model, 'password'); ?>
-                    <?php echo $form->passwordField($model, 'password', array('class' => 'text-field')); ?>
-<!--                    <label>Password  <span class="font-red">*</span></label>
-                    <input type="password" class="text-field">-->
+                <div class="pswrd">
+                    <div class="left">
+                        Password: <span>Wrong Password</span>
+                    </div>
+                    <div class="right">
+                        <input type="password" />
+                    </div>
                 </div>
-
-                <div class="row"><div class="right">
-                        <?php echo CHtml::submitButton('Login', array('class' => 'button')); ?>
-<!--                        <input type="button" class="button" value="Login" >-->
-                    </div></div>
-
+                <input type="button" value="Login" />
             </div>
-        </fieldset>
-    </div></div>
-<!-- =========================== Contant Wrapper Close Here =========================== -->
-
-<!-- ============================= Message Box Start Here ============================= -->
-<?php
-if (count($model->getErrors()) != 0) {
-    ?>
-    <div class="login-messages">
-        <div class="login-messages-error">
-            <?php echo $form->error($model, 'username'); ?>
-            <?php echo $form->error($model, 'password'); ?>
         </div>
-    </div>
+    </div>-->
+
     <?php
-}
-?>
-<?php $this->endWidget(); ?>
+    /* @var $this SiteController */
+    /* @var $model LoginForm */
+    /* @var $form CActiveForm  */
+
+    $this->pageTitle = Yii::app()->name . ' - Login';
+    $this->breadcrumbs = array(
+        'Login',
+    );
+    ?>
+    <div class="form">
+        <?php
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'login-form',
+            'enableClientValidation' => true,
+            'clientOptions' => array(
+                'validateOnSubmit' => true,
+            ),
+                ));
+        ?>
+        <div class="login-container">
+            <div id="main_wraper">
+                <div id="wraper">
+                    <div id="login">
+                        <h1><img src="css/images/login.png" /> Login</h1>
+                        <div class="name">
+                            <div class="right">
+                         
+                                    <?php echo $form->labelEx($model, 'username'); ?>
+                                    <?php echo $form->textField($model, 'username'); ?>
+                                    <?php echo $form->error($model, 'username'); ?>
+                          
+                            </div>
+                        </div>
+                        <div class="pswrd">
+                            <div class="right">
+                      
+                                    <?php echo $form->labelEx($model, 'password'); ?>
+                                    <?php echo $form->passwordField($model, 'password'); ?>
+                                    <?php echo $form->error($model, 'password'); ?>
+                            </div>
+
+                        <div class="row buttons">
+                             <input type="button" value="Login" />
+                        </div>
+
+                        <?php $this->endWidget(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>

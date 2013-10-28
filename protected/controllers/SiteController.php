@@ -25,8 +25,7 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
+
         $this->render('index');
     }
 
@@ -69,7 +68,7 @@ class SiteController extends Controller {
      * Displays the login page
      */
     public function actionLogin() {
-        $this->layout = '//layouts/login_admin';
+
         $model = new LoginForm;
 
         // if it is ajax validation request
@@ -88,6 +87,37 @@ class SiteController extends Controller {
 
         // display the login form
         $this->render('login', array('model' => $model));
+    }
+
+    public function actionChat() {
+
+        $this->render('chat');
+    }
+
+    public function actionRegister() {
+      
+        $model = new RegisterForm;
+        
+        if (isset($_POST['RegisterForm'])) {
+
+            $model->attributes = $_POST['RegisterForm'];
+
+            if (isset($model->attributes)) {
+
+                $model->Name = $_POST['RegisterForm']['username'];
+                $model->password = $_POST['RegisterForm']['password'];
+                $model->email = $_POST['RegisterForm']['email'];
+
+
+                // CVarDumper::dump($_POST['RegisterForm']['username'],10,TRUE);die();
+                if ($model->save()) {
+                    $this->redirect($this->createUrl('/site/login'));
+                } else {
+                    echo '-';
+                }
+            }
+        }
+        $this->render('register', array('model' => $model));
     }
 
     /**

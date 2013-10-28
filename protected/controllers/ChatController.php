@@ -39,6 +39,7 @@ class ChatController extends Controller {
      * chating index action
      */
     public function actionIndex() {
+      //  Yii::app()->themes = 'Chat';
         $model = new GroupChat();
         if(isset($_POST['GroupChat']) && isset($_POST['ajax'])){
             $model->attributes = $_POST['GroupChat'];
