@@ -65,7 +65,7 @@
                             </div>
 
                         <div class="row buttons">
-                             <input type="button" value="Login" />
+                             <input type="submit" value="Login" />
                         </div>
 
                         <?php $this->endWidget(); ?>
