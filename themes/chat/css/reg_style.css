@@ -1,9 +1,27 @@
 
 #main_wraper { min-height:500px; float:left; background:url(../images/wraper_bg.jpg) no-repeat; height:600px; width:100%; }
 
-#login { margin-top:50px; margin-bottom:10px; }
+#login { margin-top:40px !important; margin-bottom:10px; }
 
 .left { padding: 5px 10px 5px 20px; margin: 8px 0 0 0; width:90%; float:left; color:#1a171b; font-size:18px; }
 
-.right { padding: 5px 0 5px 20px; margin: 0; width:90%; float:left; }
+.right { padding: 5px 0 5px 20px; margin: 0; width:100%; float:left; }
+
 .register {margin-top: 5px !important;}
+
+.errorMessage { color:#F00; font-size:14px; padding: 5px 0 0 0; float:left; margin-left:40%;  }
+
+.row { width:98%; padding: 0; margin: 3px 5px; float:left; }
+
+.row label { width:35%; float:left; height:25px; color:#1A171B; font-size:14px; padding: 5px 0 0 10px; margin: 0; }
+
+.row label span { color:#F00; }
+
+.row input[type=text] { width:60%; float:left; height:30px; border: none; border:1px solid #1A171B; border-radius:5px; }
+
+.row input[type=password] { width:60%; float:left; height:30px; border: none; border:1px solid #1A171B; border-radius:5px; }
+
+.row input[type=submit] { height:35px; padding: 0; width:120px; float:right; margin: 5px 8px 5px 0 !important; }
+
+
+.row input[type=submit]:hover { color:#00519E; } 
