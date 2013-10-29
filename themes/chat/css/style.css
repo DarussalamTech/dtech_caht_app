@@ -35,7 +35,7 @@ header h1 { text-align:center; color:#FFF; font-style:italic; margin: 30px 0 0 0
 .right { padding: 10px 0 10px 20px; margin: 0; width:90%; float:left; }
 
 .right input { width:100%; border: none; border:1px solid #1a171b; border-radius:5px; height:40px; }
-
+.register .right input { height: 33px }
 input[type=button] ,input[type=submit]{ float:right; border: none; margin: 10px 18px 20px 0; background: #e0e498; border-radius:5px; color:#1a171b; font-size:19px; width:100px; height:30px; cursor:pointer; border:1px solid #b4c723; }
 
 footer { background:url(../images/header_bg_03.jpg) repeat-x; height:100px; width:100%; float:left; }

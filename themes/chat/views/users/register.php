@@ -20,6 +20,6 @@
     <?php endif; ?>
 </div>
 <div class="clear"></div>
-<h1>Register User</h1>
+
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

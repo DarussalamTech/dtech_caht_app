@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form wide">
+<div id="login"  class="register">
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
@@ -13,28 +13,48 @@
     ));
     ?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-    <?php echo $form->errorSummary($model); ?>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'business_name'); ?>
-        <?php echo $form->textField($model, 'business_name'); ?>
-        <?php echo $form->error($model, 'business_name'); ?>
+    <h1><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/registration.png" /> Signup</h1>
+    <div class="name">
+        <div class="left">
+            Username:
+        </div>
+        <div class="right">
+            <input type="text" />
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'business_address'); ?>
-        <?php echo $form->textArea($model, 'business_address'); ?>
-        <?php echo $form->error($model, 'business_address'); ?>
+    <div class="pswrd">
+        <div class="left">
+            Email: <span>Incorrect Email ID</span>
+        </div>
+        <div class="right">
+            <?php echo $form->textField($model, 'email'); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'position_title'); ?>
-        <?php echo $form->textField($model, 'position_title'); ?>
-        <?php echo $form->error($model, 'position_title'); ?>
+    <div class="pswrd">
+        <div class="left">
+            Email: <span>Incorrect Email ID</span>
+        </div>
+        <div class="right">
+            <?php echo $form->textField($model, 'email'); ?>
+        </div>
     </div>
-
+    <div class="pswrd">
+        <div class="left">
+            Password: <span>Wrong Password</span>
+        </div>
+        <div class="right">
+            <?php echo $form->passwordField($model, 'password'); ?>
+        </div>
+    </div>
+    <div class="pswrd">
+        <div class="left">
+            Confirm Password: <span>Wrong Password</span>
+        </div>
+        <div class="right">
+            <?php echo $form->passwordField($model, 'retype'); ?>
+        </div>
+    </div>
     <div class="row">
         <?php echo $form->labelEx($model, 'email'); ?>
         <?php echo $form->textField($model, 'email'); ?>
@@ -71,17 +91,6 @@
         <?php echo $form->error($model, 'last_name'); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'contact_no'); ?>
-        <?php echo $form->textField($model, 'contact_no'); ?>
-        <?php echo $form->error($model, 'contact_no'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'gender'); ?>
-        <?php echo $form->dropDownList($model, 'gender',array("Male"=>"Male","Female"=>"Female")); ?>
-        <?php echo $form->error($model, 'gender'); ?>
-    </div>
 
 
 
