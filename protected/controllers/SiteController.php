@@ -124,6 +124,7 @@ class SiteController extends Controller {
      * Logs out the current user and redirect to homepage.
      */
     public function actionLogout() {
+        ConfColorTables::model()->updateAll(array("user_id"=>""),"user_id =".Yii::app()->user->id);
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }

@@ -122,8 +122,18 @@ class GroupChat extends CActiveRecord {
     public function getChatHistory() {
         $chatM = $this->findAll();
         $chat = "";
+        $colors = ConfColorTables::model()->getAssigneedColors();
+        
         foreach ($chatM as $data) {
-            $chat.="<div class='msgln'> <b>" . $data->username . "</b> <div class='chat_body'>" . stripslashes(htmlspecialchars($data->message)) . "</div><span class='date'>(" . $data->visible_date_time . ")</span><br></div>";
+            $user_color = "#FF0000";
+            if(!empty($colors[$data->create_user_id])){
+                $user_color = $colors[$data->create_user_id];
+            }
+            $chat.= '<div class="chatting">'.
+                    '<h2 style="color:'.$user_color.'">'.$data->username.'</h2>'.
+                    '<p>'.stripslashes(htmlspecialchars($data->message)) .'<span>'.$data->visible_date_time.'</span></p>'.
+            '</div>';
+            
         }
         
         return $chat;

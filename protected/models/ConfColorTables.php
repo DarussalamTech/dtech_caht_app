@@ -1,20 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "conf_chat_type".
+ * This is the model class for table "conf_color_tables".
  *
- * The followings are the available columns in table 'conf_chat_type':
+ * The followings are the available columns in table 'conf_color_tables':
  * @property integer $id
- * @property string $page_title
- * @property string $current_user
- * @property string $chat_type
+ * @property string $color
+ * @property integer $user_id
  */
-class ConfChatType extends CActiveRecord {
+class ConfColorTables extends CActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return ConfChatType the static model class
+     * @return ConfColorTables the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -24,7 +23,7 @@ class ConfChatType extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'conf_chat_type';
+        return 'conf_color_tables';
     }
 
     /**
@@ -34,11 +33,11 @@ class ConfChatType extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('page_title', 'length', 'max' => 100),
-            array('current_user, chat_type', 'length', 'max' => 30),
+            array('user_id', 'numerical', 'integerOnly' => true),
+            array('color', 'length', 'max' => 20),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, page_title, current_user, chat_type', 'safe', 'on' => 'search'),
+            array('id, color, user_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -58,9 +57,8 @@ class ConfChatType extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'page_title' => 'Page Title',
-            'current_user' => 'Current User',
-            'chat_type' => 'Chat Type',
+            'color' => 'Color',
+            'user_id' => 'User',
         );
     }
 
@@ -75,13 +73,46 @@ class ConfChatType extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('page_title', $this->page_title, true);
-        $criteria->compare('current_user', $this->current_user, true);
-        $criteria->compare('chat_type', $this->chat_type, true);
+        $criteria->compare('color', $this->color, true);
+        $criteria->compare('user_id', $this->user_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    /**
+     * to fill the color 
+     * @return boolean
+     */
+    protected function beforeValidate() {
+
+
+        /**
+          special conidtion
+         */
+        if (!empty(Yii::app()->user->id)) {
+            $this->user_id = Yii::app()->user->id;
+        }
+        parent::beforeValidate();
+
+        return true;
+    }
+
+    /**
+     * find available color that not in use
+     */
+    public function findAvailableColor() {
+        $color = $this->find("user_id = '' OR user_id IS NULL");
+        return $color;
+    }
+
+    /**
+     * assigned color with respect to user key
+     */
+    public function getAssigneedColors() {
+        $colors = $this->findAll('t.user_id IS NOT NULL');
+        return CHtml::listData($colors,"user_id","color");
     }
 
 }

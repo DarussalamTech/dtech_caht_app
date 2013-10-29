@@ -19,7 +19,6 @@ class UserIdentity extends CUserIdentity {
 
         if ($user === null) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-            
         } else if (!$user->validatePassword($this->password, $user->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {
@@ -30,6 +29,12 @@ class UserIdentity extends CUserIdentity {
             $this->setState('user_email', $user->email);
             $this->setState('name', $user->contact_name);
             $this->setState('user_id', $user->id);
+
+            $colorModel = ConfColorTables::model()->findAvailableColor();
+            
+            $this->setState('user_color', $colorModel->color);
+
+            $colorModel->updateByPk($colorModel->id, array("user_id" => $this->id));
 
 
             $this->errorCode = self::ERROR_NONE;

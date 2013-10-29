@@ -61,12 +61,12 @@ $this->breadcrumbs = array(
 
     <div id="main_wraper">
         <div id="wraper">
-            <div id="login">
-                <h1><img src="css/images/registration.png" /> Sign up</h1>
+            <div id="login" class="register">
+                <h1><img src="<?php echo Yii::app()->theme->baseUrl;?>/css/images/registration.png" /> Sign up</h1>
                 <div class="name">
                     <div class = "right">
                         <div class="row">
-                            <?php echo $form->labelEx($model, 'Name'); ?>
+                            <?php echo $form->labelEx($model, 'username'); ?>
                             <?php echo $form->textField($model, 'username'); ?>
                             <?php echo $form->error($model, 'username'); ?>
                         </div>
@@ -74,7 +74,7 @@ $this->breadcrumbs = array(
                     </div>
                     <div class = "right">
                         <div class="row">
-                            <?php echo $form->labelEx($model, 'Email'); ?>
+                            <?php echo $form->labelEx($model, 'email'); ?>
                             <?php echo $form->textField($model, 'email'); ?>
                             <?php echo $form->error($model, 'email'); ?>
 
