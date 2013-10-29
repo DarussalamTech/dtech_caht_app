@@ -104,12 +104,7 @@ class SiteController extends Controller {
 
             if (isset($model->attributes)) {
 
-                $model->Name = $_POST['RegisterForm']['username'];
-                $model->password = $_POST['RegisterForm']['password'];
-                $model->email = $_POST['RegisterForm']['email'];
 
-
-                // CVarDumper::dump($_POST['RegisterForm']['username'],10,TRUE);die();
                 if ($model->save()) {
                     $this->redirect($this->createUrl('/site/login'));
                 } else {

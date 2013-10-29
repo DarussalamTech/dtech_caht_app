@@ -17,23 +17,7 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'business_name'); ?>
-        <?php echo $form->textField($model, 'business_name'); ?>
-        <?php echo $form->error($model, 'business_name'); ?>
-    </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'business_address'); ?>
-        <?php echo $form->textArea($model, 'business_address'); ?>
-        <?php echo $form->error($model, 'business_address'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'position_title'); ?>
-        <?php echo $form->textField($model, 'position_title'); ?>
-        <?php echo $form->error($model, 'position_title'); ?>
-    </div>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'email'); ?>
@@ -71,17 +55,6 @@
         <?php echo $form->error($model, 'last_name'); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'contact_no'); ?>
-        <?php echo $form->textField($model, 'contact_no'); ?>
-        <?php echo $form->error($model, 'contact_no'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'gender'); ?>
-        <?php echo $form->dropDownList($model, 'gender',array("Male"=>"Male","Female"=>"Female")); ?>
-        <?php echo $form->error($model, 'gender'); ?>
-    </div>
 
 
 

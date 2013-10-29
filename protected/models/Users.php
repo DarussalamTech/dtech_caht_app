@@ -5,13 +5,8 @@
  *
  * The followings are the available columns in table 'users':
  * @property integer $id
- * @property string $business_name
- * @property string $business_address
- * @property string $position_title
  * @property string $first_name
  * @property string $last_name
- * @property string $contact_no
- * @property string $gender
  * @property string $email
  * @property string $username
  * @property string $password
@@ -43,15 +38,15 @@ class Users extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('business_name, first_name, last_name, email, username, password,confirm_password', 'required'),
+            array(' first_name, last_name, email, username, password,confirm_password', 'required'),
             array('username,email', 'unique'),
             array('email', 'email'),
             array('confirm_password', 'compare', 'compareAttribute' => 'password'),
-            array('business_name, position_title, first_name, last_name, contact_no, gender, email, username, password', 'length', 'max' => 250),
-            array('confirm_password,business_address', 'safe'),
+            array('first_name, last_name, email, username, password', 'length', 'max' => 250),
+            array('confirm_password', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, business_name, business_address, position_title, first_name, last_name, contact_no, gender, email, username, password', 'safe', 'on' => 'search'),
+            array('id, first_name, last_name, email, username, password', 'safe', 'on' => 'search'),
         );
     }
 
@@ -71,14 +66,11 @@ class Users extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'business_name' => 'Business Name',
-            'business_address' => 'Business Address',
-            'position_title' => 'Position Title',
+      
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
             'contact_no' => 'Contact No',
-            'gender' => 'Gender',
-            'email' => 'Email',
+ 
             'username' => 'Username',
             'password' => 'Password',
         );
@@ -95,13 +87,11 @@ class Users extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('business_name', $this->business_name, true);
-        $criteria->compare('business_address', $this->business_address, true);
-        $criteria->compare('position_title', $this->position_title, true);
+
         $criteria->compare('first_name', $this->first_name, true);
         $criteria->compare('last_name', $this->last_name, true);
         $criteria->compare('contact_no', $this->contact_no, true);
-        $criteria->compare('gender', $this->gender, true);
+
         $criteria->compare('email', $this->email, true);
         $criteria->compare('username', $this->username, true);
         $criteria->compare('password', $this->password, true);
