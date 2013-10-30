@@ -1,4 +1,6 @@
 <?php
+error_reporting(1);
+ini_set('error_reporting', 1);
 /**
  * This is the bootstrap file for test application.
  * This file should be removed when the application is deployed for production.
@@ -12,4 +14,5 @@ $config=dirname(__FILE__).'/protected/config/test.php';
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 
 require_once($yii);
+require_once(dirname(__FILE__).'/protected/tests/WebTestCase.php');
 Yii::createWebApplication($config)->run();
